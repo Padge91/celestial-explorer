@@ -42,8 +42,8 @@ function buildControls(){
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, .1, 10000000000000 );
 	camera.position.z = 5;
 	controls = new THREE.TrackballControls( camera );
-	controls.rotateSpeed = 1.0;
-	controls.zoomSpeed = 1.2;
+	controls.rotateSpeed = .5;
+	controls.zoomSpeed = .4;
 	controls.panSpeed = 0.8;
 	controls.noZoom = false;
 	controls.noPan = false;
@@ -53,6 +53,21 @@ function buildControls(){
 	controls.addEventListener( 'change', render );
 }
 
+
+//calculate coordinate to scale
+function toScaleCoordinate(coordinate){
+	return coordinate;
+	var sunDiameterInParsecs = 1 / (.0000000225461 * 2);
+	return coordinate * sunDiameterInParsecs;
+}
+
+
+
+//reload objcts in scene
+function reloadObjectsInScene(){
+	scene.remove(scene.children[0]);
+	loadDataAndObjects();
+}
 
 //create gemoetrical objects from objects in data
 function loadObjectsInScene(objectsArray){
@@ -64,25 +79,26 @@ function loadObjectsInScene(objectsArray){
 		if (o.dist >= 10000000 || o.dist < 0){
 			continue;
 		}
-			
+	
 		// add element
-		var x = o.x;
-		var y = o.y;
-		var z = o.z;
+		var x = toScaleCoordinate(o.x);
+		var y = toScaleCoordinate(o.y);
+		var z = toScaleCoordinate(o.z);
 		var color = calculateColor(o.ci);
 
-	        var particle = new THREE.Vector3(x, y, z);
-
-		particles.vertices.push(particle);
-		particles.colors.push(new THREE.Color(color));
-		
+		//create numerous particles on same spot so brightness appears more
+		for (var i2 = 0; i2 < 2; i2++){
+	        	var particle = new THREE.Vector3(x, y, z);
+			particles.vertices.push(particle);
+			particles.colors.push(new THREE.Color(color));
+		}		
 	}
 
 
 	var material = new THREE.PointsMaterial({
 		vertexColors: THREE.VertexColors,
-                size: .5,
-		map: THREE.ImageUtils.loadTexture("/images/particle.png"),
+                size: 1,
+		map: THREE.ImageUtils.loadTexture("/images/star.png"),
       		blending: THREE.AdditiveBlending,
       		transparent: true,
 		depthWrite: false
@@ -112,6 +128,7 @@ function main(){
         buildControls();
 	loadDataAndObjects();
 	animate();
+	
 }
 
 
