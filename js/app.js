@@ -1,8 +1,8 @@
 
 
 var starColorRanges = [-0.33, -0.17, 0.15, 0.44, 0.68, 1.15, 1.64];
-var starColorValues = ["#00BFFF", "#87CEFA", "#AFEEEE", "#EEE8AA", "#FFD700", "#FF8C00", "#FF4500"];
-
+//var starColorValues = ["#00BFFF", "#87CEFA", "#AFEEEE", "#EEE8AA", "#FFD700", "#FF8C00", "#FF4500"];
+var starColorValues = ["#9db4ff", "#afc3ff", "#e4e8ff", "#fbf8ff", "#fff4e8", "#FFd7ae", "#FFbb7b"];
 
 
 //set up standard scene objects
