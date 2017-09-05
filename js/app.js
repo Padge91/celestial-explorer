@@ -98,7 +98,7 @@ function loadObjectsInScene(objectsArray){
 	var material = new THREE.PointsMaterial({
 		vertexColors: THREE.VertexColors,
                 size: 1,
-		map: THREE.ImageUtils.loadTexture("/images/star.png"),
+		map: THREE.ImageUtils.loadTexture("./images/star.png"),
       		blending: THREE.AdditiveBlending,
       		transparent: true,
 		depthWrite: false

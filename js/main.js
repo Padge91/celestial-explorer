@@ -54,7 +54,7 @@ function csvJSON(csv){
 
 
 function main(){
-	var dataFile = "/data/hygdata_v3.csv";
+	var dataFile = "./data/hygdata_v3.csv";
 
 	loadFile(dataFile, csvJSON);
 		
