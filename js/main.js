@@ -1,5 +1,5 @@
 
-var debug = true;
+var debug = false;
 window.celestialData = null;
 
 function log(message){

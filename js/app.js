@@ -11,7 +11,8 @@ var renderer = new THREE.WebGLRenderer();
 var particles = new THREE.Geometry();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
-
+var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, .1, 10000000000000 );
+var controls = new THREE.TrackballControls( camera );
 
 //calculate actual color of the star
 function calculateColor(colorIndex){
@@ -28,20 +29,20 @@ function calculateColor(colorIndex){
 function animate() {
 	requestAnimationFrame( animate );
 	controls.update();
+	render();
 }
 
 
 //render the scene
 function render() {
+	//requestAnimationFrame(render);
 	renderer.render( scene, camera );
 }
 
 
 //build camera controls
 function buildControls(){
-	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, .1, 10000000000000 );
 	camera.position.z = 5;
-	controls = new THREE.TrackballControls( camera );
 	controls.rotateSpeed = .5;
 	controls.zoomSpeed = .4;
 	controls.panSpeed = 0.8;
@@ -62,6 +63,14 @@ function toScaleCoordinate(coordinate){
 }
 
 
+//clear loading screen
+function clearLoadingScreen(){
+	var element = document.getElementById("loading-screen");
+	if (element==null){
+		return;
+	}
+	element.style.display="none";
+}
 
 //reload objcts in scene
 function reloadObjectsInScene(){
@@ -118,6 +127,7 @@ function loadDataAndObjects(){
 		if (window.celestialData){
 			clearInterval(intervalId);
 			loadObjectsInScene(window.celestialData);
+			clearLoadingScreen();
 		}
 	}, 1000);
 }
@@ -128,7 +138,6 @@ function main(){
         buildControls();
 	loadDataAndObjects();
 	animate();
-	
 }
 
 
