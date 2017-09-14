@@ -43,9 +43,9 @@ function render() {
 //build camera controls
 function buildControls(){
 	camera.position.z = 5;
-	controls.rotateSpeed = .5;
-	controls.zoomSpeed = .4;
-	controls.panSpeed = 0.8;
+	controls.rotateSpeed = 1;
+	controls.zoomSpeed = 1;
+	controls.panSpeed = 1;
 	controls.noZoom = false;
 	controls.noPan = false;
 	controls.staticMoving = true;
@@ -57,7 +57,7 @@ function buildControls(){
 
 //calculate coordinate to scale
 function toScaleCoordinate(coordinate){
-	return coordinate;
+	//return coordinate;
 	var sunDiameterInParsecs = 1 / (.0000000225461 * 2);
 	return coordinate * sunDiameterInParsecs;
 }
