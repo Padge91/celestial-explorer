@@ -96,7 +96,7 @@ function loadObjectsInScene(objectsArray){
 		var color = calculateColor(o.ci);
 
 		//create numerous particles on same spot so brightness appears more
-		for (var i2 = 0; i2 < 2; i2++){
+		for (var i2 = 0; i2 < 5; i2++){
 	        	var particle = new THREE.Vector3(x, y, z);
 			particles.vertices.push(particle);
 			particles.colors.push(new THREE.Color(color));
